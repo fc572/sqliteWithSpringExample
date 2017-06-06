@@ -1,4 +1,4 @@
-package hello;
+package sqllite;
 
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.function.SQLFunctionTemplate;
