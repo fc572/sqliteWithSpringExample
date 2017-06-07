@@ -6,7 +6,7 @@ public interface UserServiceImpl {
 
     User findById(long id);
 
-    long findByName(String name);
+    User findByName(String name);
 
     User saveUser(User user);
 

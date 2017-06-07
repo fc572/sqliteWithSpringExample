@@ -2,7 +2,6 @@ package Api.controller;
 
 import Api.model.User;
 import Api.service.UserService;
-import jdk.nashorn.api.scripting.JSObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +47,13 @@ public class RestApiController {
     @RequestMapping(value = "/user" , method = RequestMethod.GET)
     public ResponseEntity<?> getUser(@RequestParam(value = "name") String name) {
         logger.info("Fetching User with name {}", name);
-        long userId = userService.findByName(name);
+        User user= userService.findByName(name);
 
-        if (userId == -1) {
+        if (user == null) {
             logger.error("User with name {} not found.", name);
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(userService.findById(userId), HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     // -------------------Create a User-------------------------------------------

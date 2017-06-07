@@ -3,7 +3,6 @@ package Api.controllerTest;
 import Api.model.User;
 import Api.service.UserService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,7 @@ public class ControllerTest {
         users.get(1).setPassword("jackPass");
 
         given(this.userService.findById(1)).willReturn(users.get(0));
-        given(this.userService.findByName("Jack")).willReturn(users.get(1).getId());
+        given(this.userService.findByName("Jack")).willReturn(users.get(1));
         given(this.userService.findAllUsers()).willReturn(users);
 
     }
@@ -61,7 +60,7 @@ public class ControllerTest {
         assertThat(user.getBody().getName(), equalTo("Fra"));
     }
 
-    @Test @Ignore
+    @Test
     public void getUserByNameTest(){
         ResponseEntity<User> user = this.restTemplate.getForEntity("/api/user?name={name}", User.class, "Jack");
         assertThat("Http status success", user.getStatusCode().is2xxSuccessful());

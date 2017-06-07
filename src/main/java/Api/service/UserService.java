@@ -18,13 +18,13 @@ public class UserService implements UserServiceImpl{
     }
 
     @Override
-    public long findByName(String name) {
+    public User findByName(String name) {
         for(User user : userRepository.findAll()){
             if(user != null && user.getName().equalsIgnoreCase(name)){
-                return user.getId();
+                return findById(user.getId());
             }
         }
-        return -1;
+        return null;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class UserService implements UserServiceImpl{
 
     @Override
     public boolean isUserExist(User user) {
-        return (findByName(user.getName()) > 0);
+        return !(findByName(user.getName()) == null);
     }
 
     @Override
